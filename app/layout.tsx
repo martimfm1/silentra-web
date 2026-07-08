@@ -13,6 +13,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+verification: {
+    google: "FhMmeOmP3YAX0hJTdjFJc4Gy7yZruOE4Lz--lYP9n6U",
+  },
+
 export const metadata: Metadata = {
   title: "Silentra — Coming Soon",
   description: "You Think, We Do.",
