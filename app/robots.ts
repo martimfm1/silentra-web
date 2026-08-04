@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/api/',
     },
-    sitemap: 'https://silentra.vercel.app/sitemap.xml',
+    sitemap: 'https://silentra.me/sitemap.xml',
   };
 }

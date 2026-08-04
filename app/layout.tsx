@@ -19,14 +19,14 @@ export const metadata: Metadata = {
   title: "Silentra — You Think. We Do.",
   description:
     "Silentra builds premium digital products — Discord bots, modern websites, landing pages, full-stack apps, and custom software for businesses that care about quality.",
-  metadataBase: new URL("https://silentra.vercel.app"),
+  metadataBase: new URL("https://silentra.me"),
   keywords: ["Silentra", "software", "digital products", "Discord bots", "websites", "full-stack", "SaaS"],
   authors: [{ name: "Silentra" }],
   openGraph: {
     title: "Silentra — You Think. We Do.",
     description:
       "Premium digital products built with engineering precision. Discord bots, websites, landing pages, and custom software.",
-    url: "https://silentra.vercel.app",
+    url: "https://silentra.me",
     siteName: "Silentra",
     images: [
       {

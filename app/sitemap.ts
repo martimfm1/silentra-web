@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next';
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: 'https://silentra.vercel.app',
+      url: 'https://silentra.me',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 1,
