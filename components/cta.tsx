@@ -42,7 +42,7 @@ export function CTA() {
 
             <div className="flex flex-wrap items-center gap-3 justify-center lg:justify-start">
               <a
-                href="mailto:hello@silentra.io"
+                href="mailto:silentra.contact@gmail.com"
                 className="inline-flex items-center justify-center px-7 py-3.5 text-sm font-medium text-white rounded-full bg-white/10 border border-white/15 hover:bg-white/15 hover:border-white/25 backdrop-blur transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.08)]"
               >
                 {"Let's Talk"}
