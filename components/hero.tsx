@@ -73,7 +73,7 @@ export function Hero() {
             <motion.div variants={itemVariants}>
               <span className="inline-flex items-center gap-2 rounded-full border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.04)] px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-[0.15em] text-[#7a7a7a] backdrop-blur">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#b8b8b8] opacity-70" />
-                Premium Software Engineering
+                Software Engineering
               </span>
             </motion.div>
 
@@ -160,36 +160,41 @@ export function Hero() {
                 className="absolute inset-0 rounded-full scale-125 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.07)_0%,transparent_70%)] blur-xl"
               />
 
-              {/* Glass plate */}
-              <motion.div
-                animate={{ y: [0, -14, 0] }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-[420px] lg:h-[420px] rounded-3xl overflow-hidden glass glow-md"
-              >
-                {/* Inner reflection gradient */}
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.08)_0%,transparent_50%,rgba(255,255,255,0.02)_100%)] z-10"
-                />
+              {/* Logo (no glass plate) */}
+              <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-[420px] lg:h-[420px] rounded-3xl overflow-hidden">
                 <Image
                   src="/silentra-logo.png"
-                  alt="Silentra logo — premium metallic mark"
+                  alt="Silentra logo"
                   fill
                   className="object-cover"
                   priority
                   sizes="(max-width: 640px) 256px, (max-width: 1024px) 320px, 420px"
                 />
-              </motion.div>
+              </div>
 
-              {/* Reflection beneath */}
-              <div
+              {/* Logo-shaped shadow beneath */}
+              <motion.div
                 aria-hidden="true"
-                className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-3/4 h-8 rounded-full bg-[rgba(255,255,255,0.04)] blur-lg"
-              />
+                animate={{ y: [0, 6, 0], opacity: [0.12, 0.18, 0.12] }}
+                transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex items-center justify-center"
+                style={{
+                  width: "75%",
+                  height: "auto",
+                }}
+              >
+                <div
+                  className="bg-no-repeat bg-center bg-contain"
+                  style={{
+                    width: "66%",
+                    height: "66%",
+                    backgroundImage: "url('/silentra-logo.png')",
+                    filter: "blur(18px)",
+                    opacity: 0.12,
+                    transform: "scaleY(0.6)",
+                  }}
+                />
+              </motion.div>
             </div>
           </motion.div>
         </div>

@@ -1,32 +1,42 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
 const projects = [
   {
-    name: "Silentra Barbers",
+    name: "Silentra for Barbers",
     description: "A full SaaS platform for barbershops — appointments, clients, professionals, and business settings in one seamless experience.",
     tags: ["Next.js", "TypeScript", "Supabase", "Tailwind"],
     category: "SaaS Product",
+    image: "/work-silentra-barbers.png",
+    url: "https://barbers.silentra.me/",
   },
   {
-    name: "NTM Ticket Bot",
+    name: "Silentra Ticket Bot",
     description: "Advanced Discord ticketing system with custom workflows, staff management, and analytics built for large communities.",
-    tags: ["Discord.js", "Node.js", "PostgreSQL"],
+    tags: ["Discord.py", "Python", "Supabase", "PostgreSQL"],
     category: "Discord Bot",
+    image: "/work-silentra-discord-bot.png",
+    url: "https://ticketbot.silentra.me/",
   },
   {
-    name: "Custom Landing Page",
+    name: "Lab Customs Clipper Landing Page",
     description: "High-converting landing page engineered for a product launch — copy, motion design, and performance optimised to perfection.",
     tags: ["Next.js", "Framer Motion", "Tailwind"],
     category: "Landing Page",
+    image: "https://image.thum.io/get/https://lab-customs-clipper.vercel.app/",
+    url: "https://lab-customs-clipper.vercel.app/",
   },
   {
-    name: "Full-Stack Dashboard",
-    description: "Internal analytics dashboard with real-time data, role-based access, and a clean information architecture.",
-    tags: ["React", "TypeScript", "Vercel", "Drizzle"],
-    category: "Application",
+    name: "62Degrees Project",
+    description: "A Full-stack website for a clothing brand, featuring a product catalog, shopping cart, and checkout flow with Stripe integration.",
+    tags: ["Html", "CSS", "JavaScript", "Python", "Django", "Stripe"],
+    category: "Full-Stack Development",
+    image: "/work-silentra-62degrees.png",
+    url: "https://six2degrees-web.onrender.com/",
   },
 ];
 
@@ -40,6 +50,16 @@ const cardVariants = {
 };
 
 export function Work() {
+  const [selectedProject, setSelectedProject] = useState<typeof projects[number] | null>(null);
+
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setSelectedProject(null);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   return (
     <section
       id="work"
@@ -72,6 +92,16 @@ export function Work() {
               disciplined engineering and thoughtful design.
             </p>
           </div>
+          <div className="flex items-center">
+            <a
+              href="https://github.com/martimfm1"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white rounded-full bg-white/6 border border-white/10 hover:bg-white/10 transition"
+            >
+              Ver GitHub
+            </a>
+          </div>
         </motion.div>
 
         {/* Projects grid */}
@@ -85,18 +115,19 @@ export function Work() {
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
               whileHover={{ y: -4 }}
-              className="group relative flex flex-col gap-6 rounded-2xl border border-[rgba(255,255,255,0.07)] bg-[rgba(255,255,255,0.03)] p-7 backdrop-blur overflow-hidden transition-all duration-500 hover:border-[rgba(255,255,255,0.12)] hover:bg-[rgba(255,255,255,0.05)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
+              onClick={() => setSelectedProject(project)}
+              className="group relative flex flex-col gap-6 rounded-2xl border border-[rgba(255,255,255,0.07)] bg-[rgba(255,255,255,0.03)] p-7 backdrop-blur overflow-hidden transition-all duration-500 hover:border-[rgba(255,255,255,0.12)] hover:bg-[rgba(255,255,255,0.05)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.5)] cursor-pointer"
             >
               {/* Gradient image placeholder */}
-              <div className="relative h-48 w-full rounded-xl overflow-hidden bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)]">
+              <div className="relative h-0 pb-[56.25%] w-full rounded-xl overflow-hidden bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)]">
+                {project.image ? (
+                  <Image src={project.image} alt={project.name} fill className="object-cover" />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-[10px] uppercase tracking-[0.15em] text-[#3a3a3a]">{project.category}</span>
+                  </div>
+                )}
                 <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.04)_0%,transparent_50%,rgba(255,255,255,0.02)_100%)]" />
-                {/* Simulated dark preview */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-[10px] uppercase tracking-[0.15em] text-[#3a3a3a]">
-                    {project.category}
-                  </span>
-                </div>
-                {/* Grid overlay */}
                 <div className="absolute inset-0 bg-grid opacity-50" />
               </div>
 
@@ -140,6 +171,47 @@ export function Work() {
             </motion.article>
           ))}
         </div>
+
+        {/* Modal */}
+        {selectedProject && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center">
+            <div className="fixed inset-0 bg-black/60" onClick={() => setSelectedProject(null)} />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="relative w-[90vw] h-[80vh] max-w-6xl bg-[#060606] rounded-xl overflow-hidden border border-[rgba(255,255,255,0.06)] shadow-lg"
+            >
+              <div className="absolute top-3 right-3 z-10">
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/6 hover:bg-white/10 transition"
+                  aria-label="Close preview"
+                >
+                  ✕
+                </button>
+              </div>
+
+              {selectedProject.url ? (
+                <iframe
+                  src={selectedProject.url}
+                  className="w-full h-full"
+                  title={selectedProject.name}
+                  sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                />
+              ) : (
+                <div className="flex items-center justify-center h-full">
+                  <p className="text-[#b8b8b8]">Preview not available</p>
+                </div>
+              )}
+
+              <div className="absolute bottom-3 left-3 z-10 text-sm text-[#7a7a7a]">
+                If the site blocks embedding, <a href={selectedProject.url} target="_blank" rel="noreferrer" className="underline">open in new tab</a>
+              </div>
+            </motion.div>
+          </div>
+        )}
       </div>
     </section>
   );

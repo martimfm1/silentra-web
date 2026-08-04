@@ -17,11 +17,11 @@ const footerLinks = {
   Projects: [
     { label: "Featured Work", href: "#work" },
     { label: "Silentra Barbers", href: "#work" },
-    { label: "NTM Ticket Bot", href: "#work" },
+    { label: "Silentra Ticket Bot", href: "#work" },
   ],
   Legal: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Terms of Service", href: "/terms-of-service" },
   ],
 };
 
