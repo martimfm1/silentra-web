@@ -25,7 +25,7 @@ const projects = [
   {
     name: "MoneyFlow",
     image: "/work-silentra-moneyflow.png",
-    url: "https://moneyflow-ten-dusky.vercel.app/",
+    url: "https://moneyflow.silentra.me/",
   },
 ];
 const cardVariants = {
