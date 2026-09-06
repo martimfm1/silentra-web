@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import { ArrowUpRight, MessageCircle } from "lucide-react";
+import { ArrowDown, ArrowUpRight, MessageCircle } from "lucide-react";
 
 const containerVariants = {
   hidden: {},
@@ -18,18 +18,22 @@ const itemVariants = {
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
-  const logoY = useTransform(scrollYProgress, [0, 1], [0, -45]);
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, -22]);
+  const logoY = useTransform(scrollYProgress, [0, 1], [0, -110]);
+  const logoScale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
+  const logoRotate = useTransform(scrollYProgress, [0, 1], [0, 4]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -55]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const gridY = useTransform(scrollYProgress, [0, 1], [0, 90]);
 
   return (
     <section id="home" ref={sectionRef} className="relative flex min-h-[92svh] items-center overflow-hidden bg-grid" aria-label="Silentra introduction">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+      <motion.div aria-hidden="true" style={{ y: gridY }} className="pointer-events-none absolute inset-0 opacity-70">
         <div className="absolute left-1/2 top-1/2 h-[720px] w-[720px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03)_0%,transparent_68%)]" />
         <div className="absolute right-0 top-0 h-[520px] w-[520px] rounded-full bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.02)_0%,transparent_68%)]" />
-      </div>
+      </motion.div>
 
       <div className="mx-auto w-full max-w-7xl px-4 pb-14 pt-24 sm:px-6 sm:pb-20 lg:px-8 lg:pt-28">
-        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.02fr)_minmax(360px,0.98fr)] lg:gap-10">
+        <motion.div style={{ opacity }} className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.02fr)_minmax(360px,0.98fr)] lg:gap-10">
           <motion.div style={{ y: contentY }} variants={containerVariants} initial="hidden" animate="visible" className="flex max-w-2xl flex-col gap-7">
             <motion.div variants={itemVariants}>
               <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.09] bg-white/[0.035] px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.16em] text-[#a0a0a0]">
@@ -74,7 +78,7 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }} style={{ y: logoY }} className="flex justify-center lg:justify-end">
+          <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }} style={{ y: logoY, scale: logoScale, rotate: logoRotate }} className="flex justify-center lg:justify-end">
             <div className="relative">
               <div aria-hidden="true" className="absolute inset-0 scale-125 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.06)_0%,transparent_70%)] blur-2xl" />
               <div className="relative h-[clamp(250px,56vw,420px)] w-[clamp(250px,56vw,420px)] overflow-hidden rounded-[2rem] border border-white/[0.07] bg-[#080808] shadow-[0_30px_100px_rgba(0,0,0,0.5)]">
@@ -82,13 +86,13 @@ export function Hero() {
               </div>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
 
-      <div aria-hidden="true" className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 sm:flex">
-        <span className="text-[9px] uppercase tracking-[0.2em] text-[#666]">Scroll</span>
-        <span className="h-7 w-px bg-gradient-to-b from-white/30 to-transparent" />
-      </div>
+      <motion.a href="#services" onClick={(e) => { e.preventDefault(); document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" }); }} style={{ opacity }} className="group absolute bottom-7 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-[9px] uppercase tracking-[0.2em] text-[#666] transition hover:text-white sm:flex" aria-label="Ver serviços">
+        <span>Explorar</span>
+        <ArrowDown size={13} className="transition-transform group-hover:translate-y-1" aria-hidden="true" />
+      </motion.a>
     </section>
   );
 }
