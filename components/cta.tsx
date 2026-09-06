@@ -1,89 +1,46 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowUpRight, Instagram, Mail } from "lucide-react";
+
+const email = "mailto:silentra.contact@gmail.com";
+const instagram = "https://www.instagram.com/silentra.dev/";
 
 export function CTA() {
   return (
-    <section
-      id="contact"
-      className="relative py-40 overflow-hidden"
-      aria-label="Call to action"
-    >
-      {/* Layered background glows */}
+    <section id="contact" className="relative overflow-hidden border-t border-white/[0.06] py-24 sm:py-28 lg:py-32" aria-label="Contactar a Silentra">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.04)_0%,transparent_65%)]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.025)_0%,transparent_60%)]" />
+        <div className="absolute left-1/2 top-1/2 h-[620px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.045)_0%,transparent_68%)]" />
+        <div className="absolute inset-0 bg-grid opacity-40" />
       </div>
 
-      {/* Faint grid */}
-      <div aria-hidden="true" className="absolute inset-0 bg-grid opacity-50" />
-
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex flex-col items-center lg:flex-row lg:items-center lg:justify-between gap-12">
-
-          {/* Copy */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-            className="flex flex-col gap-6 text-center lg:text-left max-w-xl"
-          >
-            <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-[#7a7a7a]">
-              Ready to start?
-            </p>
-            <h2 className="text-balance text-4xl font-semibold tracking-[-0.025em] text-white sm:text-5xl lg:text-6xl">
-              Ready to build something exceptional?
-            </h2>
-            <p className="text-base leading-relaxed text-[#7a7a7a]">
-              Tell us what you&apos;re building. We&apos;ll handle the rest — with precision, care, and
-              the engineering quality your idea deserves.
-            </p>
-
-            <div className="flex flex-wrap items-center gap-3 justify-center lg:justify-start">
-              <a
-                href="mailto:silentra.contact@gmail.com"
-                className="inline-flex items-center justify-center px-7 py-3.5 text-sm font-medium text-white rounded-full bg-white/10 border border-white/15 hover:bg-white/15 hover:border-white/25 backdrop-blur transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.08)]"
-              >
-                {"Let's Talk"}
-              </a>
-              <a
-                href="https://discord.gg/aKpwVrXgyx"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center px-7 py-3.5 text-sm font-medium text-[#b8b8b8] rounded-full border border-[rgba(255,255,255,0.08)] hover:text-white hover:border-[rgba(255,255,255,0.15)] transition-all duration-300"
-              >
-                Join Discord
-              </a>
-            </div>
-          </motion.div>
-
-          {/* Floating glass sphere */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1], delay: 0.2 }}
-            className="flex-shrink-0"
-            aria-hidden="true"
-          >
-            <motion.div
-              animate={{ y: [0, -18, 0], rotate: [0, 2, 0] }}
-              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-              className="relative w-52 h-52 sm:w-64 sm:h-64"
-            >
-              {/* Outer glow */}
-              <div className="absolute inset-0 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.07)_0%,transparent_70%)] blur-xl scale-125" />
-              {/* Sphere */}
-              <div className="absolute inset-0 rounded-full border border-[rgba(255,255,255,0.1)] bg-[radial-gradient(ellipse_at_30%_30%,rgba(255,255,255,0.1)_0%,rgba(255,255,255,0.02)_50%,rgba(0,0,0,0.3)_100%)] backdrop-blur-sm overflow-hidden">
-                {/* Inner reflection arc */}
-                <div className="absolute top-4 left-6 w-16 h-6 rounded-full bg-[rgba(255,255,255,0.12)] blur-sm rotate-[-20deg]" />
-                <div className="absolute top-6 left-8 w-8 h-2 rounded-full bg-[rgba(255,255,255,0.18)] blur-[2px] rotate-[-20deg]" />
-              </div>
-              {/* Shadow beneath */}
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-3/4 h-6 rounded-full bg-[rgba(255,255,255,0.04)] blur-lg" />
+      <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="overflow-hidden rounded-[1.5rem] border border-white/[0.09] bg-white/[0.025] p-6 shadow-[0_30px_100px_rgba(0,0,0,0.24)] sm:p-9 lg:p-12">
+          <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(320px,420px)] lg:gap-16">
+            <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6 }} className="max-w-2xl">
+              <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.18em] text-[#777]">Vamos falar</p>
+              <h2 className="text-balance text-[clamp(2.5rem,7vw,5.5rem)] font-semibold leading-[0.94] tracking-[-0.05em] text-white">
+                Tens uma ideia?
+                <br />
+                <span className="text-[#707070]">Vamos fazê-la.</span>
+              </h2>
+              <p className="mt-5 max-w-xl text-pretty text-sm leading-6 text-[#888] sm:text-base sm:leading-7">
+                Diz-nos o que precisas, mesmo que ainda não tenhas tudo definido. Respondemos, percebemos o problema e vemos contigo o melhor caminho.
+              </p>
             </motion.div>
-          </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6, delay: 0.1 }} className="flex flex-col gap-3">
+              <a href={email} className="group inline-flex min-h-12 items-center justify-between gap-4 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60">
+                <span className="inline-flex items-center gap-2"><Mail size={16} aria-hidden="true" /> Enviar email</span>
+                <ArrowUpRight size={16} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+              </a>
+              <a href={instagram} target="_blank" rel="noreferrer" className="group inline-flex min-h-12 items-center justify-between gap-4 rounded-xl border border-white/10 bg-black/20 px-5 py-3 text-sm font-medium text-white transition hover:border-white/20 hover:bg-white/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50">
+                <span className="inline-flex items-center gap-2"><Instagram size={16} aria-hidden="true" /> @silentra.dev</span>
+                <ArrowUpRight size={16} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+              </a>
+              <p className="pt-2 text-center text-[10px] uppercase tracking-[0.12em] text-[#555]">Sem formulários longos. Sem complicar.</p>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
