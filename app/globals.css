@@ -13,13 +13,12 @@
   --font-mono: var(--font-geist-mono);
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  background: #050505;
 }
 
 body {
@@ -33,61 +32,36 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-img,
-svg {
-  max-width: 100%;
-}
+img, svg { max-width: 100%; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button, [role="button"], a { touch-action: manipulation; }
 
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
-}
+section { scroll-margin-top: 80px; }
 
-button,
-[role="button"],
-a {
-  touch-action: manipulation;
-}
+a { text-underline-offset: 4px; }
 
-::selection {
-  background: rgba(255, 255, 255, 0.15);
-  color: #fff;
-}
+::selection { background: rgba(255,255,255,0.15); color: #fff; }
 
-::-webkit-scrollbar {
-  width: 4px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0a0a0a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
-}
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
 
 .bg-grid {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255,255,255,0.04);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255,255,255,0.08);
 }
 
-.glow-sm {
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.04);
-}
-
-.glow-md {
-  box-shadow: 0 0 40px rgba(255, 255, 255, 0.06);
-}
+.glow-sm { box-shadow: 0 0 20px rgba(255,255,255,0.04); }
+.glow-md { box-shadow: 0 0 40px rgba(255,255,255,0.06); }
 
 .noise::before {
   content: "";
@@ -100,23 +74,14 @@ a {
 }
 
 @media (max-width: 767px) {
-  html {
-    scroll-padding-top: 70px;
-  }
-
-  .bg-grid {
-    background-size: 38px 38px;
-  }
+  html { scroll-padding-top: 70px; }
+  section { scroll-margin-top: 70px; }
+  .bg-grid { background-size: 38px 38px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
