@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Instagram, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const footerLinks = {
   Empresa: [
@@ -29,6 +29,16 @@ const footerLinks = {
 
 const instagramUrl = "https://www.instagram.com/silentra.dev/";
 
+function InstagramIcon({ size = 15 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 function handleFooterNavClick(href: string) {
   if (href.startsWith("#")) {
     const el = document.querySelector(href);
@@ -52,8 +62,8 @@ export function Footer() {
               <span className="text-sm font-semibold tracking-wide text-white">Silentra</span>
             </a>
             <p className="max-w-sm text-sm leading-6 text-[#777]">Websites e software feitos à medida para negócios que querem vender, crescer e trabalhar melhor.</p>
-            <a href={instagramUrl} target="_blank" rel="noreferrer" className="group inline-flex w-fit items-center gap-2 text-sm text-[#999] transition hover:text-white">
-              <Instagram size={15} aria-hidden="true" />
+            <a href={instagramUrl} target="_blank" rel="noreferrer" className="group inline-flex w-fit items-center gap-2 text-sm text-[#999] transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40">
+              <InstagramIcon />
               @silentra.dev
               <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
             </a>
@@ -65,7 +75,7 @@ export function Footer() {
               <ul className="flex flex-col gap-3" role="list">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} onClick={link.href.startsWith("#") ? (e) => { e.preventDefault(); handleFooterNavClick(link.href); } : undefined} className="text-sm text-[#777] transition-colors hover:text-white">
+                    <a href={link.href} onClick={link.href.startsWith("#") ? (e) => { e.preventDefault(); handleFooterNavClick(link.href); } : undefined} className="text-sm text-[#777] transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40">
                       {link.label}
                     </a>
                   </li>
