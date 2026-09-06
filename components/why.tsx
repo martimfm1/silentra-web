@@ -4,102 +4,34 @@ import { motion } from "framer-motion";
 import { Layers, TrendingUp, Gauge, Sparkles, ShieldCheck } from "lucide-react";
 
 const reasons = [
-  {
-    icon: Layers,
-    title: "Modern Technology",
-    description: "Every project is built on a modern, battle-tested stack. No legacy debt.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Scalable Architecture",
-    description: "We design systems that grow with your business — not ones you'll need to rebuild in 12 months.",
-  },
-  {
-    icon: Gauge,
-    title: "Performance First",
-    description: "Speed is non-negotiable. We optimise at every layer — from database queries to render pipelines.",
-  },
-  {
-    icon: Sparkles,
-    title: "Premium Experience",
-    description: "The quality you see on the surface reflects rigorous work underneath. We sweat the details.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Reliable Support",
-    description: "We don't disappear after launch. Ongoing support, maintenance, and iteration are part of how we work.",
-  },
+  { icon: Layers, title: "Feito à medida", description: "Nada de modelos iguais para toda a gente. Construímos a solução de acordo com o teu negócio." },
+  { icon: TrendingUp, title: "Pensado para vender", description: "Cada página tem um objetivo claro: explicar, gerar confiança e levar a pessoa ao próximo passo." },
+  { icon: Gauge, title: "Rápido", description: "Sites leves e rápidos, pensados para funcionar bem tanto no computador como no telemóvel." },
+  { icon: Sparkles, title: "Boa experiência", description: "Informação fácil de encontrar, botões claros e menos passos desnecessários para o utilizador." },
+  { icon: ShieldCheck, title: "Acompanhamento", description: "Depois de publicar, continuamos disponíveis para corrigir, melhorar e acrescentar o que for preciso." },
 ];
 
 export function Why() {
   return (
-    <section
-      id="about"
-      className="relative py-32 overflow-hidden"
-      aria-label="Why Silentra"
-    >
-      {/* Background glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.02)_0%,transparent_65%)]"
-      />
+    <section id="about" className="relative overflow-hidden py-24 sm:py-28 lg:py-32" aria-label="Porque escolher a Silentra">
+      <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.02)_0%,transparent_65%)]" />
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-          className="mb-16 max-w-xl"
-        >
-          <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.18em] text-[#7a7a7a]">
-            Why choose us
-          </p>
-          <h2 className="text-balance text-4xl font-semibold tracking-[-0.025em] text-white sm:text-5xl">
-            Why Silentra
-          </h2>
-          <p className="mt-4 text-pretty text-base leading-relaxed text-[#7a7a7a]">
-            We are not an agency. Not freelance. We are a precision engineering
-            team that treats every product like it&apos;s our own.
-          </p>
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6 }} className="mb-10 max-w-2xl sm:mb-14">
+          <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.18em] text-[#767676]">Porque a Silentra</p>
+          <h2 className="text-balance text-[clamp(2.35rem,6vw,4rem)] font-semibold leading-[0.98] tracking-[-0.04em] text-white">Um site bonito não chega.</h2>
+          <p className="mt-4 max-w-xl text-pretty text-sm leading-6 text-[#808080] sm:text-base sm:leading-7">Tem de ser fácil de usar, rápido e levar as pessoas a fazer aquilo que procuras.</p>
         </motion.div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {reasons.map((reason, i) => (
-            <motion.div
-              key={reason.title}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.7, delay: i * 0.09, ease: [0.25, 0.1, 0.25, 1] }}
-              whileHover={{ y: -6, transition: { duration: 0.3 } }}
-              className={`group relative flex flex-col gap-5 rounded-2xl border border-[rgba(255,255,255,0.07)] bg-[rgba(255,255,255,0.03)] p-7 backdrop-blur overflow-hidden transition-colors duration-300 hover:border-[rgba(255,255,255,0.12)] hover:bg-[rgba(255,255,255,0.05)] ${
-                i === 4 ? "sm:col-span-2 lg:col-span-1" : ""
-              }`}
-            >
-              {/* Top light reflection */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.1)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              />
-
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.04)] group-hover:border-[rgba(255,255,255,0.15)] group-hover:bg-[rgba(255,255,255,0.07)] transition-all duration-300">
-                <reason.icon
-                  size={18}
-                  className="text-[#b8b8b8] group-hover:text-white transition-colors duration-300"
-                  aria-hidden="true"
-                />
+            <motion.div key={reason.title} initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-40px" }} transition={{ duration: 0.55, delay: i * 0.07 }} whileHover={{ y: -4 }} className={`group relative flex min-h-[210px] flex-col justify-between gap-7 rounded-2xl border border-white/[0.07] bg-white/[0.025] p-6 backdrop-blur transition-colors hover:border-white/[0.13] hover:bg-white/[0.04] sm:p-7 ${i === 4 ? "sm:col-span-2 lg:col-span-1" : ""}`}>
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.035] transition group-hover:border-white/[0.15] group-hover:bg-white/[0.07]">
+                <reason.icon size={18} className="text-[#b8b8b8] group-hover:text-white" aria-hidden="true" />
               </div>
-
               <div className="flex flex-col gap-2">
-                <h3 className="text-sm font-semibold text-white">
-                  {reason.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-[#7a7a7a] group-hover:text-[#b8b8b8] transition-colors duration-300">
-                  {reason.description}
-                </p>
+                <h3 className="text-sm font-semibold text-white">{reason.title}</h3>
+                <p className="text-sm leading-6 text-[#777] transition-colors group-hover:text-[#a0a0a0]">{reason.description}</p>
               </div>
             </motion.div>
           ))}
