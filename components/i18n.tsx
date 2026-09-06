@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useSyncExternalStore,
+} from "react";
 
 type Locale = "pt" | "en";
 
@@ -12,32 +18,61 @@ type I18nContextValue = {
 
 const I18nContext = createContext<I18nContextValue | null>(null);
 
+const localeListeners = new Set<() => void>();
+
+function getInitialLocale(): Locale {
+  if (typeof window === "undefined") return "pt";
+
+  const stored = window.localStorage.getItem("silentra-locale");
+  if (stored === "pt" || stored === "en") return stored;
+
+  return window.navigator.language.toLowerCase().startsWith("pt") ? "pt" : "en";
+}
+
+let currentLocale: Locale = getInitialLocale();
+
+function subscribeToLocale(callback: () => void) {
+  localeListeners.add(callback);
+  return () => localeListeners.delete(callback);
+}
+
+function getLocaleSnapshot() {
+  return currentLocale;
+}
+
+function getServerLocaleSnapshot() {
+  return "pt" as const;
+}
+
+function updateDocumentLanguage(locale: Locale) {
+  if (typeof document !== "undefined") {
+    document.documentElement.lang = locale === "pt" ? "pt-PT" : "en";
+  }
+}
+
+function setStoredLocale(next: Locale) {
+  currentLocale = next;
+  window.localStorage.setItem("silentra-locale", next);
+  updateDocumentLanguage(next);
+  localeListeners.forEach((listener) => listener());
+}
+
 export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("pt");
+  const locale = useSyncExternalStore(
+    subscribeToLocale,
+    getLocaleSnapshot,
+    getServerLocaleSnapshot,
+  );
 
   useEffect(() => {
-    const stored = window.localStorage.getItem("silentra-locale");
-    const browserLocale = window.navigator.language
-      .toLowerCase()
-      .startsWith("pt")
-      ? "pt"
-      : "en";
-    const next = stored === "pt" || stored === "en" ? stored : browserLocale;
-    setLocaleState(next);
-    document.documentElement.lang = next === "pt" ? "pt-PT" : "en";
-  }, []);
-
-  const setLocale = (next: Locale) => {
-    setLocaleState(next);
-    window.localStorage.setItem("silentra-locale", next);
-    document.documentElement.lang = next === "pt" ? "pt-PT" : "en";
-  };
+    updateDocumentLanguage(locale);
+  }, [locale]);
 
   const value = useMemo(
     () => ({
       locale,
-      setLocale,
-      toggleLocale: () => setLocale(locale === "pt" ? "en" : "pt"),
+      setLocale: setStoredLocale,
+      toggleLocale: () => setStoredLocale(locale === "pt" ? "en" : "pt"),
     }),
     [locale],
   );
