@@ -16,33 +16,34 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Silentra — You Think. We Do.",
+  title: "Silentra — Websites e software à medida",
   description:
-    "Silentra builds premium digital products — Discord bots, modern websites, landing pages, full-stack apps, and custom software for businesses that care about quality.",
+    "A Silentra cria websites, landing pages, web apps e software à medida para negócios que querem vender mais, simplificar processos e crescer.",
   metadataBase: new URL("https://silentra.me"),
-  keywords: ["Silentra", "software", "digital products", "Discord bots", "websites", "full-stack", "SaaS"],
+  keywords: [
+    "Silentra",
+    "websites",
+    "landing pages",
+    "web apps",
+    "software à medida",
+    "desenvolvimento web",
+    "UX UI",
+    "sites para empresas",
+  ],
   authors: [{ name: "Silentra" }],
   openGraph: {
-    title: "Silentra — You Think. We Do.",
+    title: "Silentra — Websites e software à medida",
     description:
-      "Premium digital products built with engineering precision. Discord bots, websites, landing pages, and custom software.",
+      "Websites, landing pages e software feitos à medida para negócios reais.",
     url: "https://silentra.me",
     siteName: "Silentra",
-    images: [
-      {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: "Silentra — You Think. We Do.",
-      },
-    ],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Silentra — Websites e software à medida" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Silentra — You Think. We Do.",
-    description:
-      "Premium digital products built with engineering precision.",
+    title: "Silentra — Websites e software à medida",
+    description: "Websites, landing pages e software feitos à medida.",
     images: ["/og.png"],
   },
 };
@@ -52,16 +53,10 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="bg-[#050505]">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
-      >
+    <html lang="pt-PT" className="bg-[#050505]">
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
         {children}
         <SpeedInsights />
       </body>
