@@ -57,7 +57,7 @@ export const copy = {
       ["Software à medida", "Quando uma solução pronta não chega, construímos exatamente o que o teu negócio precisa."],
     ] },
     work: { eyebrow: "Projetos selecionados", title: <>Sites que as pessoas <span>usam de verdade.</span></>, body: "Projetos reais feitos para ter bom aspeto, funcionar bem no telemóvel e tornar o próximo passo óbvio.", more: "Ver mais no GitHub", categories: ["Site para negócio", "Landing page", "Site para negócio", "Web app"], descriptions: [
-      "Landing page criada para a GB Barbershop, com serviços, equipa, avaliações, localização e marcações num só percurso.",
+      "Landing page criada para a Silentra for Barbers, com serviços, equipa, avaliações, localização e marcações num só percurso.",
       "Website focado num negócio real, pensado para explicar rapidamente o serviço e transformar visitas em contactos.",
       "Site visual para um estúdio de tattoo, feito para mostrar os trabalhos, transmitir o estilo do estúdio e facilitar o contacto.",
       "Produto completo de gestão financeira pessoal, com dashboard, despesas recorrentes, objetivos e organização do dinheiro do dia a dia.",
@@ -81,7 +81,7 @@ export const copy = {
       ["Custom software", "When off-the-shelf is not enough, we build exactly what your business needs."],
     ] },
     work: { eyebrow: "Selected work", title: <>Sites people <span>actually use.</span></>, body: "Real projects built to look right, work well on mobile and make the next step obvious.", more: "See more on GitHub", categories: ["Business website", "Landing page", "Business website", "Web app"], descriptions: [
-      "Landing page created for GB Barbershop, bringing services, team, reviews, location and booking into one clear journey.",
+      "Landing page created for Silentra for Barbers, bringing services, team, reviews, location and booking into one clear journey.",
       "A focused website for a real business, designed to explain the service quickly and turn visits into enquiries.",
       "A visual-first tattoo studio site built to showcase the work, communicate the studio's style and make contact simple.",
       "A complete personal finance product with dashboards, recurring expenses, goals and a cleaner way to manage everyday money.",
