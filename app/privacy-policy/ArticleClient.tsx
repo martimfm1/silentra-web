@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useSyncExternalStore, useState, type ReactNode } from "react";
 
 const sections = [
   {
@@ -58,16 +58,25 @@ const sections = [
   },
 ];
 
-function SectionPanel({ id, title, children, expanded, onToggle }: any) {
+type SectionPanelProps = {
+  id: string;
+  title: string;
+  children: ReactNode;
+  expanded: boolean;
+  onToggle: (id: string) => void;
+};
+
+function SectionPanel({ id, title, children, expanded, onToggle }: SectionPanelProps) {
   return (
     <section className="mb-6" id={id}>
       <button
+        type="button"
         aria-expanded={expanded}
         onClick={() => onToggle(id)}
         className="w-full flex items-center justify-between gap-4 py-3 px-2 rounded-md hover:bg-[rgba(255,255,255,0.01)] transition"
       >
         <h3 className="text-lg font-semibold text-white">{title}</h3>
-        <span className="text-sm text-[#7a7a7a]">{expanded ? "-" : "+"}</span>
+        <span className="text-sm text-[#7a7a7a]" aria-hidden="true">{expanded ? "−" : "+"}</span>
       </button>
 
       <AnimatePresence initial={false}>
@@ -88,26 +97,22 @@ function SectionPanel({ id, title, children, expanded, onToggle }: any) {
   );
 }
 
+function subscribeToViewport(callback: () => void) {
+  window.addEventListener("resize", callback);
+  return () => window.removeEventListener("resize", callback);
+}
+
+function getDesktopSnapshot() {
+  return window.innerWidth >= 1024;
+}
+
+function getServerDesktopSnapshot() {
+  return false;
+}
+
 export default function PrivacyArticleClient() {
+  const isDesktop = useSyncExternalStore(subscribeToViewport, getDesktopSnapshot, getServerDesktopSnapshot);
   const [expandedMap, setExpandedMap] = useState<Record<string, boolean>>({});
-
-  useEffect(() => {
-    const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1024;
-    const initial: Record<string, boolean> = {};
-    sections.forEach((s) => (initial[s.id] = isDesktop));
-    setExpandedMap(initial);
-
-    function onResize() {
-      if (window.innerWidth >= 1024) {
-        const allOpen: Record<string, boolean> = {};
-        sections.forEach((s) => (allOpen[s.id] = true));
-        setExpandedMap(allOpen);
-      }
-    }
-
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
 
   function toggle(id: string) {
     setExpandedMap((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -124,12 +129,18 @@ export default function PrivacyArticleClient() {
 
       <article className="col-span-1 lg:col-span-3 rounded-xl border border-[rgba(255,255,255,0.04)] bg-[rgba(255,255,255,0.02)] p-4 sm:p-8 shadow-lg">
         <p className="text-sm sm:text-base text-[#b8b8b8] mb-4">
-          This Privacy Policy explains how Silentra ("we", "us", or "our") collects,
+          This Privacy Policy explains how Silentra (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) collects,
           and discloses information when you use our website and services.
         </p>
 
         {sections.map((s) => (
-          <SectionPanel key={s.id} id={s.id} title={s.title} expanded={!!expandedMap[s.id]} onToggle={toggle}>
+          <SectionPanel
+            key={s.id}
+            id={s.id}
+            title={s.title}
+            expanded={isDesktop || !!expandedMap[s.id]}
+            onToggle={toggle}
+          >
             {s.content}
           </SectionPanel>
         ))}
