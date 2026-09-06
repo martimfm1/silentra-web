@@ -20,9 +20,9 @@ type RadialNavItem = {
 };
 
 type MenuButtonConfig = {
-  iconSize?: number; // px
-  buttonSize?: number; // px, button diameter when collapsed
-  buttonPadding?: number; // px
+  iconSize?: number;
+  buttonSize?: number;
+  buttonPadding?: number;
 };
 
 const defaultMenuButtonConfig: Required<MenuButtonConfig> = {
@@ -89,32 +89,13 @@ function calculateIconOffset({
   return centerOffset - buttonPadding + bias;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function withDefaults<T extends Record<string, any>>(
+type DefaultsRecord = Record<string, unknown>;
+
+function withDefaults<T extends DefaultsRecord>(
   defaults: T,
   overrides?: Partial<T>,
 ): T {
   return { ...defaults, ...overrides };
-}
-
-function normalizeDeg(a: number) {
-  return ((a % 360) + 360) % 360;
-}
-
-function toNearestTurn(prev: number | undefined, target: number) {
-  const b = normalizeDeg(target);
-  if (prev === undefined) return b;
-  const k = Math.round((prev - b) / 360);
-  return b + 360 * k;
-}
-
-function useShortestRotation(target: number) {
-  const prevRef = React.useRef<number | undefined>(undefined);
-  return React.useMemo(() => {
-    const next = toNearestTurn(prevRef.current, target);
-    prevRef.current = next;
-    return next;
-  }, [target]);
 }
 
 function MenuButton({
@@ -149,7 +130,6 @@ function MenuButton({
       }}
       onClick={onActivate}
       type="button"
-      role="menuitem"
       aria-pressed={!!isActive}
       aria-label={label}
     >
@@ -172,9 +152,6 @@ function MenuButton({
   );
 }
 
-// orbitRadius determines how far from the center each item should be placed.
-// It positions the CENTER of each small circle exactly on the parent circle's stroke.
-// Formula: parentRadius (size/2) minus half of the child diameter (~0.5 accounts for border).
 function RadialNav({
   size = 180,
   items,
@@ -197,7 +174,6 @@ function RadialNav({
 
   const baseAngle =
     (items.find((it) => it.id === activeId)?.angle ?? 0) + POINTER_BASE_DEG;
-  const rotateAngle = useShortestRotation(baseAngle);
 
   const resolvedMenuButtonConfig = withDefaults(
     defaultMenuButtonConfig,
@@ -208,13 +184,12 @@ function RadialNav({
     <div
       className="relative flex items-center justify-center rounded-full border border-neutral-800 dark:border-neutral-200"
       style={{ width: size, height: size }}
-      role="menu"
       aria-label="Radial navigation"
     >
       <motion.div
         initial={false}
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-        animate={{ rotate: rotateAngle }}
+        animate={{ rotate: baseAngle }}
         transition={POINTER_ROT_SPRING}
         style={{ originX: 0.5, originY: 0.5 }}
         aria-hidden="true"
