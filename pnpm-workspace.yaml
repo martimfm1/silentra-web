@@ -1,5 +1,5 @@
 allowBuilds:
-  '@heroui/shared-utils': true
+  "@heroui/shared-utils": true
   sharp: true
   unrs-resolver: true
 ignoredBuiltDependencies:

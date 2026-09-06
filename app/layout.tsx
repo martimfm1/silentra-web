@@ -37,7 +37,14 @@ export const metadata: Metadata = {
       "Websites, landing pages e software feitos à medida para negócios reais.",
     url: "https://silentra.me",
     siteName: "Silentra",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Silentra — Websites e software à medida" }],
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Silentra — Websites e software à medida",
+      },
+    ],
     type: "website",
   },
   twitter: {
@@ -53,10 +60,14 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-PT" className="bg-[#050505]">
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
+      >
         {children}
         <SpeedInsights />
       </body>

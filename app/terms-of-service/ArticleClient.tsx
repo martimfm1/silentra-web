@@ -111,7 +111,13 @@ type SectionPanelProps = {
   onToggle: (id: string) => void;
 };
 
-function SectionPanel({ id, title, children, expanded, onToggle }: SectionPanelProps) {
+function SectionPanel({
+  id,
+  title,
+  children,
+  expanded,
+  onToggle,
+}: SectionPanelProps) {
   return (
     <section className="mb-6" id={id}>
       <button
@@ -121,7 +127,9 @@ function SectionPanel({ id, title, children, expanded, onToggle }: SectionPanelP
         className="w-full flex items-center justify-between gap-4 py-3 px-2 rounded-md hover:bg-[rgba(255,255,255,0.01)] transition"
       >
         <h3 className="text-lg font-semibold text-white">{title}</h3>
-        <span className="text-sm text-[#7a7a7a]" aria-hidden="true">{expanded ? "−" : "+"}</span>
+        <span className="text-sm text-[#7a7a7a]" aria-hidden="true">
+          {expanded ? "−" : "+"}
+        </span>
       </button>
 
       <AnimatePresence initial={false}>
@@ -156,7 +164,11 @@ function getServerDesktopSnapshot() {
 }
 
 export default function TermsArticleClient() {
-  const isDesktop = useSyncExternalStore(subscribeToViewport, getDesktopSnapshot, getServerDesktopSnapshot);
+  const isDesktop = useSyncExternalStore(
+    subscribeToViewport,
+    getDesktopSnapshot,
+    getServerDesktopSnapshot,
+  );
   const [expandedMap, setExpandedMap] = useState<Record<string, boolean>>({});
 
   function toggle(id: string) {
@@ -181,10 +193,10 @@ export default function TermsArticleClient() {
 
       <article className="col-span-1 lg:col-span-3 rounded-xl border border-[rgba(255,255,255,0.04)] bg-[rgba(255,255,255,0.02)] p-4 sm:p-8 shadow-lg">
         <p className="text-sm sm:text-base text-[#b8b8b8] mb-4">
-          These Terms of Service (&quot;Terms&quot;) govern your access to and use of
-          Silentra&apos;s website, applications, and services (collectively, the
-          &quot;Services&quot;). By accessing or using our Services, you agree to be bound
-          by these Terms.
+          These Terms of Service (&quot;Terms&quot;) govern your access to and
+          use of Silentra&apos;s website, applications, and services
+          (collectively, the &quot;Services&quot;). By accessing or using our
+          Services, you agree to be bound by these Terms.
         </p>
 
         {sections.map((s) => (
@@ -203,7 +215,12 @@ export default function TermsArticleClient() {
           <h2 className="mb-3 text-xl font-semibold text-white">Contact</h2>
           <p className="text-base text-[#b8b8b8]">
             If you have questions, contact{" "}
-            <a href="mailto:hello@silentra.me" className="text-[#b8b8b8] hover:underline">hello@silentra.me</a>
+            <a
+              href="mailto:hello@silentra.me"
+              className="text-[#b8b8b8] hover:underline"
+            >
+              hello@silentra.me
+            </a>
             .
           </p>
         </section>

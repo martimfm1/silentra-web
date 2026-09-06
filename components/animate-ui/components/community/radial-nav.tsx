@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import { MousePointer2, type LucideIcon } from 'lucide-react';
-import { motion, type Variants, type Transition } from 'motion/react';
+import * as React from "react";
+import { MousePointer2, type LucideIcon } from "lucide-react";
+import { motion, type Variants, type Transition } from "motion/react";
 
 type RadialNavProps = {
   size?: number;
@@ -34,22 +34,22 @@ const defaultMenuButtonConfig: Required<MenuButtonConfig> = {
 const POINTER_BASE_DEG = 45;
 
 const POINTER_ROT_SPRING = {
-  type: 'spring',
+  type: "spring",
   stiffness: 220,
   damping: 26,
 } as const;
 
 const BUTTON_MOTION_CONFIG = {
-  initial: 'rest',
+  initial: "rest",
   variants: {
-    rest: { maxWidth: '40px' },
+    rest: { maxWidth: "40px" },
     hover: {
-      maxWidth: '140px',
-      transition: { type: 'spring', stiffness: 200, damping: 35, delay: 0.05 },
+      maxWidth: "140px",
+      transition: { type: "spring", stiffness: 200, damping: 35, delay: 0.05 },
     },
     tap: { scale: 0.95 },
   },
-  transition: { type: 'spring', stiffness: 200, damping: 25 },
+  transition: { type: "spring", stiffness: 200, damping: 25 },
 } as const;
 
 const LABEL_VARIANTS: Variants = {
@@ -57,14 +57,14 @@ const LABEL_VARIANTS: Variants = {
   hover: {
     opacity: 1,
     x: 0,
-    visibility: 'visible',
-    width: 'auto',
+    visibility: "visible",
+    width: "auto",
   },
-  tap: { opacity: 1, x: 0, visibility: 'visible', width: 'auto' },
+  tap: { opacity: 1, x: 0, visibility: "visible", width: "auto" },
 };
 
 const LABEL_TRANSITION: Transition = {
-  type: 'spring',
+  type: "spring",
   stiffness: 200,
   damping: 25,
 };
@@ -121,7 +121,7 @@ function MenuButton({
     <motion.button
       {...BUTTON_MOTION_CONFIG}
       initial={false}
-      animate={isActive ? 'hover' : 'rest'}
+      animate={isActive ? "hover" : "rest"}
       className="relative flex space-x-1 items-center overflow-hidden whitespace-nowrap rounded-full border border-neutral-800 dark:border-neutral-200 bg-background text-foreground font-medium"
       style={{
         height: buttonSize,
@@ -206,7 +206,7 @@ function RadialNav({
             style={{
               left: `calc(50% + ${x}px)`,
               top: `calc(50% + ${y}px)`,
-              transform: 'translate(-50%, -50%)',
+              transform: "translate(-50%, -50%)",
             }}
           >
             <MenuButton

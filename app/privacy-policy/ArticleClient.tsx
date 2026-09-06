@@ -9,9 +9,9 @@ const sections = [
     title: "Information We Collect",
     content: (
       <p className="text-base text-[#b8b8b8]">
-        We may collect personal information you provide (name, email), usage data,
-        and technical data (IP address, browser, device). We also use cookies and
-        similar technologies to enhance your experience.
+        We may collect personal information you provide (name, email), usage
+        data, and technical data (IP address, browser, device). We also use
+        cookies and similar technologies to enhance your experience.
       </p>
     ),
   },
@@ -20,9 +20,10 @@ const sections = [
     title: "How We Use Information",
     content: (
       <p className="text-base text-[#b8b8b8]">
-        We use information to provide and improve services, analyze usage, communicate
-        with you, and comply with legal obligations. We minimize data collection and
-        retain only what is necessary for the purpose it was collected.
+        We use information to provide and improve services, analyze usage,
+        communicate with you, and comply with legal obligations. We minimize
+        data collection and retain only what is necessary for the purpose it was
+        collected.
       </p>
     ),
   },
@@ -31,9 +32,9 @@ const sections = [
     title: "Third-Party Services",
     content: (
       <p className="text-base text-[#b8b8b8]">
-        We may share data with third-party service providers for analytics, hosting,
-        and other operations. We review providers for security and only share the
-        minimal data required for them to perform their services.
+        We may share data with third-party service providers for analytics,
+        hosting, and other operations. We review providers for security and only
+        share the minimal data required for them to perform their services.
       </p>
     ),
   },
@@ -42,8 +43,9 @@ const sections = [
     title: "Your Choices",
     content: (
       <p className="text-base text-[#b8b8b8]">
-        You can opt out of marketing communications and control cookies via browser
-        settings. Contact us for data access, correction, or deletion requests.
+        You can opt out of marketing communications and control cookies via
+        browser settings. Contact us for data access, correction, or deletion
+        requests.
       </p>
     ),
   },
@@ -52,7 +54,14 @@ const sections = [
     title: "Contact",
     content: (
       <p className="text-base text-[#b8b8b8]">
-        For questions about this policy, email <a href="mailto:silentra.contact@gmail.com" className="text-white hover:underline">silentra.contact@gmail.com</a>.
+        For questions about this policy, email{" "}
+        <a
+          href="mailto:silentra.contact@gmail.com"
+          className="text-white hover:underline"
+        >
+          silentra.contact@gmail.com
+        </a>
+        .
       </p>
     ),
   },
@@ -66,7 +75,13 @@ type SectionPanelProps = {
   onToggle: (id: string) => void;
 };
 
-function SectionPanel({ id, title, children, expanded, onToggle }: SectionPanelProps) {
+function SectionPanel({
+  id,
+  title,
+  children,
+  expanded,
+  onToggle,
+}: SectionPanelProps) {
   return (
     <section className="mb-6" id={id}>
       <button
@@ -76,7 +91,9 @@ function SectionPanel({ id, title, children, expanded, onToggle }: SectionPanelP
         className="w-full flex items-center justify-between gap-4 py-3 px-2 rounded-md hover:bg-[rgba(255,255,255,0.01)] transition"
       >
         <h3 className="text-lg font-semibold text-white">{title}</h3>
-        <span className="text-sm text-[#7a7a7a]" aria-hidden="true">{expanded ? "−" : "+"}</span>
+        <span className="text-sm text-[#7a7a7a]" aria-hidden="true">
+          {expanded ? "−" : "+"}
+        </span>
       </button>
 
       <AnimatePresence initial={false}>
@@ -111,7 +128,11 @@ function getServerDesktopSnapshot() {
 }
 
 export default function PrivacyArticleClient() {
-  const isDesktop = useSyncExternalStore(subscribeToViewport, getDesktopSnapshot, getServerDesktopSnapshot);
+  const isDesktop = useSyncExternalStore(
+    subscribeToViewport,
+    getDesktopSnapshot,
+    getServerDesktopSnapshot,
+  );
   const [expandedMap, setExpandedMap] = useState<Record<string, boolean>>({});
 
   function toggle(id: string) {
@@ -122,15 +143,23 @@ export default function PrivacyArticleClient() {
 
   return (
     <>
-      <motion.header initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }} className="mb-6">
-        <h1 className="text-2xl sm:text-3xl font-semibold text-white">Privacy Policy</h1>
+      <motion.header
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45 }}
+        className="mb-6"
+      >
+        <h1 className="text-2xl sm:text-3xl font-semibold text-white">
+          Privacy Policy
+        </h1>
         <p className="mt-1 text-xs text-[#7a7a7a]">Last updated: {updated}</p>
       </motion.header>
 
       <article className="col-span-1 lg:col-span-3 rounded-xl border border-[rgba(255,255,255,0.04)] bg-[rgba(255,255,255,0.02)] p-4 sm:p-8 shadow-lg">
         <p className="text-sm sm:text-base text-[#b8b8b8] mb-4">
-          This Privacy Policy explains how Silentra (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) collects,
-          and discloses information when you use our website and services.
+          This Privacy Policy explains how Silentra (&quot;we&quot;,
+          &quot;us&quot;, or &quot;our&quot;) collects, and discloses
+          information when you use our website and services.
         </p>
 
         {sections.map((s) => (

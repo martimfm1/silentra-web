@@ -367,7 +367,7 @@ export const copy = {
       eyebrow: "Why Silentra",
       title: (
         <>
-          A good-looking site <span>isn't enough.</span>
+          A good-looking site <span>isn&apos;t enough.</span>
         </>
       ),
       body: "It needs to be easy to use, fast and guide people to the action you actually want.",
@@ -436,7 +436,7 @@ export const copy = {
         <>
           Have an idea?
           <br />
-          <span>Let's build it.</span>
+          <span>Let&apos;s build it.</span>
         </>
       ),
       body: "Tell us what you need, even if you have not figured everything out yet. We listen, understand the problem and help find the best path.",
