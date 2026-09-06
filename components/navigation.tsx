@@ -22,10 +22,21 @@ export function Navigation() {
   const t = copy[locale].nav;
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [viewport, setViewport] = useState({ width: 0, height: 0 });
   const { scrollY } = useScroll();
   const headerScale = useSpring(useTransform(scrollY, [0, 120], [1, 0.985]), { stiffness: 170, damping: 26 });
 
   useMotionValueEvent(scrollY, "change", (latest) => setScrolled(latest > 16));
+
+  useEffect(() => {
+    const updateViewport = () => {
+      setViewport({ width: window.innerWidth, height: window.innerHeight });
+    };
+
+    updateViewport();
+    window.addEventListener("resize", updateViewport);
+    return () => window.removeEventListener("resize", updateViewport);
+  }, []);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -64,6 +75,10 @@ export function Navigation() {
     { id: 3, icon: Cpu, label: t.about, angle: 216 },
     { id: 4, icon: Bot, label: t.contact, angle: 288 },
   ];
+
+  const mobileRadialSize = viewport.width > 0
+    ? Math.max(220, Math.min(340, viewport.width - 56, viewport.height - 190))
+    : 280;
 
   return (
     <>
@@ -122,12 +137,18 @@ export function Navigation() {
 
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div id="mobile-radial-menu" role="dialog" aria-modal="true" aria-label={locale === "pt" ? "Menu principal" : "Main menu"} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }} className="fixed inset-0 z-40 flex items-center justify-center overflow-hidden bg-[#050505] px-5 pt-16 md:hidden">
-            <motion.div aria-hidden="true" initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.7 }} transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }} className="pointer-events-none absolute h-[82vw] w-[82vw] max-h-[460px] max-w-[460px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.06),transparent_65%)] blur-3xl" />
-            <motion.div initial={{ scale: 0.82, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.82, opacity: 0, y: 20 }} transition={{ duration: 0.5, delay: 0.04, ease: [0.22, 1, 0.36, 1] }} className="relative flex h-[min(74vw,360px)] w-[min(74vw,360px)] items-center justify-center">
-              <RadialNav size={Math.min(360, typeof window !== "undefined" ? window.innerWidth - 72 : 280)} items={radialItems} menuButtonConfig={{ iconSize: 16, buttonSize: 38, buttonPadding: 8 }} onActiveChange={(id) => handleNavClick(radialHrefs[id] ?? "#home")} />
+          <motion.div id="mobile-radial-menu" role="dialog" aria-modal="true" aria-label={locale === "pt" ? "Menu principal" : "Main menu"} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }} className="fixed inset-0 z-40 flex items-center justify-center overflow-hidden bg-[#050505] px-4 pt-20 pb-10 md:hidden">
+            <motion.div aria-hidden="true" initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.7 }} transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }} className="pointer-events-none absolute h-[min(74vw,340px)] w-[min(74vw,340px)] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.06),transparent_65%)] blur-3xl" />
+            <motion.div initial={{ scale: 0.82, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.82, opacity: 0, y: 20 }} transition={{ duration: 0.5, delay: 0.04, ease: [0.22, 1, 0.36, 1] }} className="relative flex max-w-full items-center justify-center">
+              <RadialNav
+                size={mobileRadialSize}
+                items={radialItems}
+                menuButtonConfig={{ iconSize: Math.max(14, Math.min(16, mobileRadialSize / 22)), buttonSize: Math.max(34, Math.min(38, mobileRadialSize / 9.5)), buttonPadding: 8 }}
+                onActiveChange={(id) => handleNavClick(radialHrefs[id] ?? "#home")}
+              />
             </motion.div>
-            <div className="pointer-events-none absolute bottom-7 left-0 right-0 text-center"><p className="text-[9px] font-medium uppercase tracking-[0.28em] text-[#555]">{locale === "pt" ? "Seleciona uma secção" : "Select a section"}</p></div>
+
+            <div className="pointer-events-none absolute inset-x-0 bottom-6 text-center"><p className="text-[9px] font-medium uppercase tracking-[0.28em] text-[#555]">{locale === "pt" ? "Seleciona uma secção" : "Select a section"}</p></div>
           </motion.div>
         )}
       </AnimatePresence>
