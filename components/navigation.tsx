@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useMotionValueEvent, useScroll, useSpring, useTransform } from "framer-motion";
-import { Menu, X, Instagram, ArrowUpRight } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 
 const navLinks = [
@@ -13,6 +13,16 @@ const navLinks = [
 ];
 
 const instagramUrl = "https://www.instagram.com/silentra.dev/";
+
+function InstagramIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -57,14 +67,14 @@ export function Navigation() {
               {navLinks.map((link) => (
                 <a key={link.label} href={link.href} onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }} className="relative rounded-md px-3 py-2 text-sm text-[#7a7a7a] transition-colors hover:bg-white/[0.04] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40">
                   {link.label}
-                  <span aria-hidden="true" className="absolute inset-x-3 bottom-1 h-px origin-left scale-x-0 bg-white/50 transition-transform duration-300 hover:scale-x-100" />
+                  <span aria-hidden="true" className="absolute inset-x-3 bottom-1 h-px origin-left scale-x-0 bg-white/50 transition-transform duration-300 group-hover:scale-x-100" />
                 </a>
               ))}
             </nav>
 
             <div className="hidden items-center gap-2 md:flex">
-              <a href={instagramUrl} target="_blank" rel="noreferrer" className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-[#7a7a7a] transition hover:border-white/20 hover:bg-white/[0.05] hover:text-white" aria-label="Instagram @silentra.dev" title="Instagram @silentra.dev"><Instagram size={16} aria-hidden="true" /></a>
-              <a href="#contact" onClick={(e) => { e.preventDefault(); handleNavClick("#contact"); }} className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.07] px-4 py-2 text-sm font-medium text-white transition hover:border-white/25 hover:bg-white/[0.11] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50">Let&apos;s talk<ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" /></a>
+              <a href={instagramUrl} target="_blank" rel="noreferrer" className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-[#7a7a7a] transition hover:border-white/20 hover:bg-white/[0.05] hover:text-white" aria-label="Instagram @silentra.dev" title="Instagram @silentra.dev"><InstagramIcon /></a>
+              <a href="#contact" onClick={(e) => { e.preventDefault(); handleNavClick("#contact"); }} className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.07] px-4 py-2 text-sm font-medium text-white transition hover:border-white/25 hover:bg-white/[0.11] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50">Let&apos;s talk<ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></a>
             </div>
 
             <button className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 text-[#b8b8b8] transition hover:border-white/20 hover:bg-white/[0.05] hover:text-white md:hidden" onClick={() => setMobileOpen((v) => !v)} aria-label={mobileOpen ? "Close menu" : "Open menu"} aria-expanded={mobileOpen}>{mobileOpen ? <X size={18} /> : <Menu size={18} />}</button>
@@ -81,7 +91,7 @@ export function Navigation() {
               ))}
               <div className="mt-3 grid grid-cols-[1fr_auto] gap-2 border-t border-white/[0.06] pt-4">
                 <a href="#contact" onClick={(e) => { e.preventDefault(); handleNavClick("#contact"); }} className="inline-flex items-center justify-center rounded-xl bg-white px-4 py-3 text-sm font-semibold text-black transition hover:bg-white/90">Let&apos;s talk</a>
-                <a href={instagramUrl} target="_blank" rel="noreferrer" className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 text-[#b8b8b8] transition hover:bg-white/[0.05] hover:text-white" aria-label="Instagram @silentra.dev"><Instagram size={18} aria-hidden="true" /></a>
+                <a href={instagramUrl} target="_blank" rel="noreferrer" className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 text-[#b8b8b8] transition hover:bg-white/[0.05] hover:text-white" aria-label="Instagram @silentra.dev"><InstagramIcon size={18} /></a>
               </div>
             </nav>
           </motion.div>
