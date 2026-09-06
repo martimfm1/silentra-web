@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/navigation";
 import { ScrollProgress } from "@/components/scroll-progress";
+import { I18nProvider } from "@/components/i18n";
 import { Hero } from "@/components/hero";
 import { Services } from "@/components/services";
 import { Work } from "@/components/work";
@@ -11,7 +12,7 @@ import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
-    <>
+    <I18nProvider>
       <ScrollProgress />
       <Navigation />
       <main>
@@ -24,6 +25,6 @@ export default function Home() {
         <CTA />
       </main>
       <Footer />
-    </>
+    </I18nProvider>
   );
 }
