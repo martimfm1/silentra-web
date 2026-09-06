@@ -15,7 +15,7 @@ const projects = [
   {
     name: "Lab Customs Clipper",
     image: "/work-silentra-landing-page.png",
-    url: "https://lab-customs-clipper.vercel.app/",
+    url: "labcustomsclipper.pt",
   },
   {
     name: "Ticket Discord Bot ",
