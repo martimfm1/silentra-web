@@ -7,7 +7,7 @@ import { useRef } from "react";
 import { copy, useI18n } from "@/components/i18n";
 
 const projects = [
-  { name: "GB Barbershop", image: "/work-silentra-barbers.png", url: "https://barbers.silentra.me/" },
+  { name: "Silentra for Barbers", image: "/work-silentra-barbers.png", url: "https://barbers.silentra.me/" },
   { name: "Lab Customs Clipper", image: "/work-silentra-landing-page.png", url: "https://lab-customs-clipper.vercel.app/" },
   { name: "Cabra Cega Tattoo Studio", image: undefined, url: "https://github.com/martimfm1/cabra-cega-tattoo-studio" },
   { name: "MoneyFlow", image: undefined, url: "https://github.com/martimfm1/MoneyFlow" },
