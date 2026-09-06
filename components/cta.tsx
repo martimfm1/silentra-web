@@ -2,10 +2,20 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, Instagram, Mail } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 
 const email = "mailto:silentra.contact@gmail.com";
 const instagram = "https://www.instagram.com/silentra.dev/";
+
+function InstagramIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
 
 export function CTA() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -34,7 +44,7 @@ export function CTA() {
                 <ArrowUpRight size={16} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
               </a>
               <a href={instagram} target="_blank" rel="noreferrer" className="group inline-flex min-h-12 items-center justify-between gap-4 rounded-xl border border-white/10 bg-black/20 px-5 py-3 text-sm font-medium text-white transition hover:border-white/20 hover:bg-white/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50">
-                <span className="inline-flex items-center gap-2"><Instagram size={16} aria-hidden="true" /> @silentra.dev</span>
+                <span className="inline-flex items-center gap-2"><InstagramIcon /> @silentra.dev</span>
                 <ArrowUpRight size={16} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
               </a>
               <p className="pt-2 text-center text-[10px] uppercase tracking-[0.12em] text-[#555]">Sem formulários longos. Sem complicar.</p>
