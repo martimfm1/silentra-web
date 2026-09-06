@@ -1,217 +1,134 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
 
 const projects = [
   {
-    name: "Silentra for Barbers",
-    description: "A full SaaS platform for barbershops — appointments, clients, professionals, and business settings in one seamless experience.",
-    tags: ["Next.js", "TypeScript", "Supabase", "Tailwind"],
-    category: "SaaS Product",
+    name: "GB Barbershop",
+    description: "Landing page built around the barbershop's style, with services, team, reviews, location and booking brought together in one clear flow.",
+    tags: ["Next.js", "UX/UI", "Conversion"],
+    category: "Business Website",
     image: "/work-silentra-barbers.png",
     url: "https://barbers.silentra.me/",
   },
   {
-    name: "Silentra Ticket Bot",
-    description: "Advanced Discord ticketing system with custom workflows, staff management, and analytics built for large communities.",
-    tags: ["Discord.py", "Python", "Supabase", "PostgreSQL"],
-    category: "Discord Bot",
-    image: "/work-silentra-discord-bot.png",
-    url: "https://ticketbot.silentra.me/",
-  },
-  {
-    name: "Lab Customs Clipper Landing Page",
-    description: "High-converting landing page engineered for a product launch — copy, motion design, and performance optimised to perfection.",
-    tags: ["Next.js", "Framer Motion", "Tailwind"],
+    name: "Lab Customs Clipper",
+    description: "A focused website for a real service business, designed to explain the offer quickly and turn visits into enquiries.",
+    tags: ["Next.js", "Motion", "SEO"],
     category: "Landing Page",
-    image: "https://image.thum.io/get/https://lab-customs-clipper.vercel.app/",
+    image: "/work-silentra-landing-page.png",
     url: "https://lab-customs-clipper.vercel.app/",
   },
   {
-    name: "62Degrees Project",
-    description: "A Full-stack website for a clothing brand, featuring a product catalog, shopping cart, and checkout flow with Stripe integration.",
-    tags: ["Html", "CSS", "JavaScript", "Python", "Django", "Stripe"],
-    category: "Full-Stack Development",
-    image: "/work-silentra-62degrees.png",
-    url: "https://six2degrees-web.onrender.com/",
+    name: "Cabra Cega Tattoo Studio",
+    description: "A visual-first tattoo studio website built to showcase the work, communicate the studio's style and make contacting the team simple.",
+    tags: ["Next.js", "UX/UI", "Mobile"],
+    category: "Business Website",
+    image: undefined,
+    url: "https://github.com/martimfm1/cabra-cega-tattoo-studio",
+  },
+  {
+    name: "MoneyFlow",
+    description: "A complete personal finance product with dashboards, recurring expenses, goals and a cleaner way to manage everyday money.",
+    tags: ["Next.js", "TypeScript", "Supabase"],
+    category: "Web App",
+    image: undefined,
+    url: "https://github.com/martimfm1/MoneyFlow",
   },
 ];
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 24 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, delay: i * 0.1, ease: "easeOut" as const },
+    transition: { duration: 0.6, delay: i * 0.08, ease: "easeOut" as const },
   }),
 };
 
 export function Work() {
-  const [selectedProject, setSelectedProject] = useState<typeof projects[number] | null>(null);
-
-  useEffect(() => {
-    function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setSelectedProject(null);
-    }
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
   return (
-    <section
-      id="work"
-      className="relative py-32 overflow-hidden"
-      aria-label="Featured work"
-    >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(255,255,255,0.008),transparent)]"
-      />
+    <section id="work" className="relative overflow-hidden py-24 sm:py-28 lg:py-32" aria-label="Selected work">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(255,255,255,0.008),transparent)]" />
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Header */}
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-          className="mb-16 flex items-end justify-between gap-8"
+          transition={{ duration: 0.65, ease: [0.25, 0.1, 0.25, 1] }}
+          className="mb-10 flex flex-col gap-5 sm:mb-14 sm:flex-row sm:items-end sm:justify-between"
         >
-          <div className="max-w-xl">
-            <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.18em] text-[#7a7a7a]">
-              Our work
-            </p>
-            <h2 className="text-balance text-4xl font-semibold tracking-[-0.025em] text-white sm:text-5xl">
-              Featured Projects
+          <div className="max-w-2xl">
+            <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.18em] text-[#7a7a7a]">Selected work</p>
+            <h2 className="text-balance text-[clamp(2.25rem,6vw,4rem)] font-semibold leading-[0.98] tracking-[-0.04em] text-white">
+              Sites people <span className="text-[#686868]">actually use.</span>
             </h2>
-            <p className="mt-4 text-pretty text-base leading-relaxed text-[#7a7a7a]">
-              A selection of products we&apos;ve built — each one a result of
-              disciplined engineering and thoughtful design.
+            <p className="mt-4 max-w-xl text-pretty text-sm leading-6 text-[#808080] sm:text-base sm:leading-7">
+              Real projects built to look right, work well on mobile and make the next step obvious.
             </p>
           </div>
-          <div className="flex items-center">
-            <a
-              href="https://github.com/martimfm1"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white rounded-full bg-white/6 border border-white/10 hover:bg-white/10 transition"
-            >
-              Ver GitHub
-            </a>
-          </div>
+          <a
+            href="https://github.com/martimfm1"
+            target="_blank"
+            rel="noreferrer"
+            className="group inline-flex w-fit items-center gap-2 text-sm font-medium text-[#a5a5a5] transition hover:text-white"
+          >
+            Ver mais no GitHub
+            <ArrowUpRight size={15} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+          </a>
         </motion.div>
 
-        {/* Projects grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {projects.map((project, i) => (
-            <motion.article
+            <motion.a
               key={project.name}
+              href={project.url}
+              target="_blank"
+              rel="noreferrer"
               custom={i}
               variants={cardVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: "-60px" }}
+              viewport={{ once: true, margin: "-50px" }}
               whileHover={{ y: -4 }}
-              onClick={() => setSelectedProject(project)}
-              className="group relative flex flex-col gap-6 rounded-2xl border border-[rgba(255,255,255,0.07)] bg-[rgba(255,255,255,0.03)] p-7 backdrop-blur overflow-hidden transition-all duration-500 hover:border-[rgba(255,255,255,0.12)] hover:bg-[rgba(255,255,255,0.05)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.5)] cursor-pointer"
+              className="group relative flex min-h-[420px] flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.025] p-4 transition-all duration-300 hover:border-white/[0.14] hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 sm:p-5"
             >
-              {/* Gradient image placeholder */}
-              <div className="relative h-0 pb-[56.25%] w-full rounded-xl overflow-hidden bg-[#0a0a0a] border border-[rgba(255,255,255,0.06)]">
+              <div className="relative min-h-[225px] overflow-hidden rounded-xl border border-white/[0.06] bg-[#090909] sm:min-h-[250px]">
                 {project.image ? (
-                  <Image src={project.image} alt={project.name} fill className="object-cover" />
+                  <Image src={project.image} alt={project.name} fill className="object-cover transition duration-700 group-hover:scale-[1.025]" sizes="(max-width: 768px) 100vw, 50vw" />
                 ) : (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-[10px] uppercase tracking-[0.15em] text-[#3a3a3a]">{project.category}</span>
+                  <div className="absolute inset-0 flex items-end bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.08),transparent_42%),linear-gradient(135deg,#151515,#070707)] p-6">
+                    <span className="text-[11px] uppercase tracking-[0.18em] text-[#555]">Preview available on project</span>
                   </div>
                 )}
-                <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.04)_0%,transparent_50%,rgba(255,255,255,0.02)_100%)]" />
-                <div className="absolute inset-0 bg-grid opacity-50" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent" aria-hidden="true" />
+                <span className="absolute left-4 top-4 rounded-full border border-white/10 bg-black/55 px-2.5 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#d1d1d1] backdrop-blur">
+                  {project.category}
+                </span>
+                <span className="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/50 text-white backdrop-blur transition group-hover:bg-white group-hover:text-black" aria-hidden="true">
+                  <ExternalLink size={15} />
+                </span>
               </div>
 
-              {/* Content */}
-              <div className="flex flex-col gap-3 flex-1">
+              <div className="flex flex-1 flex-col gap-4 px-1 pb-1 pt-5">
                 <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-[10px] font-medium uppercase tracking-[0.15em] text-[#7a7a7a] mb-1.5">
-                      {project.category}
-                    </p>
-                    <h3 className="text-base font-semibold text-white">
-                      {project.name}
-                    </h3>
-                  </div>
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full border border-[rgba(255,255,255,0.08)] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
-                    <ArrowUpRight size={14} className="text-[#b8b8b8]" aria-hidden="true" />
-                  </div>
+                  <h3 className="text-lg font-semibold tracking-[-0.02em] text-white">{project.name}</h3>
                 </div>
-                <p className="text-sm leading-relaxed text-[#7a7a7a]">
-                  {project.description}
-                </p>
+                <p className="max-w-xl text-sm leading-6 text-[#808080]">{project.description}</p>
+                <div className="mt-auto flex flex-wrap gap-1.5 pt-2">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="rounded-full border border-white/[0.07] bg-white/[0.025] px-2.5 py-1 text-[9px] font-medium uppercase tracking-[0.08em] text-[#767676]">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-
-              {/* Tags */}
-              <div className="flex flex-wrap gap-1.5">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="inline-flex items-center rounded-full border border-[rgba(255,255,255,0.07)] bg-[rgba(255,255,255,0.03)] px-2.5 py-0.5 text-[10px] font-medium tracking-wide text-[#7a7a7a]"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              {/* Corner reflection */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute top-0 left-0 w-full h-full bg-[linear-gradient(135deg,rgba(255,255,255,0.03)_0%,transparent_40%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
-              />
-            </motion.article>
+            </motion.a>
           ))}
         </div>
-
-        {/* Modal */}
-        {selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center">
-            <div className="fixed inset-0 bg-black/60" onClick={() => setSelectedProject(null)} />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="relative w-[90vw] h-[80vh] max-w-6xl bg-[#060606] rounded-xl overflow-hidden border border-[rgba(255,255,255,0.06)] shadow-lg"
-            >
-              <div className="absolute top-3 right-3 z-10">
-                <button
-                  onClick={() => setSelectedProject(null)}
-                  className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/6 hover:bg-white/10 transition"
-                  aria-label="Close preview"
-                >
-                  ✕
-                </button>
-              </div>
-
-              {selectedProject.url ? (
-                <iframe
-                  src={selectedProject.url}
-                  className="w-full h-full"
-                  title={selectedProject.name}
-                  sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-                />
-              ) : (
-                <div className="flex items-center justify-center h-full">
-                  <p className="text-[#b8b8b8]">Preview not available</p>
-                </div>
-              )}
-
-              <div className="absolute bottom-3 left-3 z-10 text-sm text-[#7a7a7a]">
-                If the site blocks embedding, <a href={selectedProject.url} target="_blank" rel="noreferrer" className="underline">open in new tab</a>
-              </div>
-            </motion.div>
-          </div>
-        )}
       </div>
     </section>
   );
