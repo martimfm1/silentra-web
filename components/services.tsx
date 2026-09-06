@@ -1,132 +1,92 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Bot, Globe, Layers, Cpu, Zap, Code2 } from "lucide-react";
+import { Bot, Globe, Layers, Cpu, Zap, Code2, ArrowUpRight } from "lucide-react";
 
 const services = [
   {
-    icon: Bot,
-    title: "Discord Bots",
-    description: "Custom bots for communities and businesses. Moderation, automation, analytics — built to scale.",
-  },
-  {
     icon: Globe,
     title: "Websites",
-    description: "Modern websites focused on performance and precision. Fast, accessible, and built to last.",
+    description: "Sites rápidos e claros que mostram o teu negócio, explicam o que fazes e facilitam o contacto.",
   },
   {
     icon: Zap,
-    title: "Landing Pages",
-    description: "Conversion-driven landing pages designed with intent. Every pixel earns its place.",
+    title: "Landing pages",
+    description: "Páginas feitas para uma ação: pedir contacto, marcar, comprar ou apresentar um serviço.",
   },
   {
     icon: Layers,
-    title: "Full-Stack Apps",
-    description: "Scalable software built for growth. From architecture to deployment, we own the entire stack.",
+    title: "Web apps",
+    description: "Ferramentas online para gerir clientes, reservas, dinheiro, equipas ou processos do dia a dia.",
   },
   {
     icon: Cpu,
-    title: "SaaS Products",
-    description: "Product-grade SaaS from idea to launch. We handle the complexity so you can focus on growth.",
+    title: "SaaS",
+    description: "Produtos completos, desde a primeira ideia até à versão que os teus clientes podem usar.",
+  },
+  {
+    icon: Bot,
+    title: "Automação & bots",
+    description: "Tarefas repetitivas passam a acontecer sozinhas, poupando tempo à tua equipa.",
   },
   {
     icon: Code2,
-    title: "Custom Software",
-    description: "When off-the-shelf doesn't fit, we engineer the exact solution your business needs.",
+    title: "Software à medida",
+    description: "Quando uma solução pronta não chega, construímos exatamente o que o teu negócio precisa.",
   },
 ];
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 32 },
+  hidden: { opacity: 0, y: 22 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.7,
-      delay: i * 0.08,
-      ease: "easeOut" as const,
-    },
+    transition: { duration: 0.55, delay: i * 0.06, ease: "easeOut" as const },
   }),
-};
-
-const headingVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" as const } },
 };
 
 export function Services() {
   return (
-    <section
-      id="services"
-      className="relative py-32 overflow-hidden"
-      aria-label="Services"
-    >
-      {/* Subtle background glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.015)_0%,transparent_70%)] blur-3xl"
-      />
+    <section id="services" className="relative overflow-hidden py-24 sm:py-28 lg:py-32" aria-label="Serviços">
+      <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.018)_0%,transparent_70%)] blur-3xl" />
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Section header */}
-        <motion.div
-          variants={headingVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          className="mb-16 max-w-xl"
-        >
-          <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.18em] text-[#7a7a7a]">
-            What we build
-          </p>
-          <h2 className="text-balance text-4xl font-semibold tracking-[-0.025em] text-white sm:text-5xl">
-            Services
-          </h2>
-          <p className="mt-4 text-pretty text-base leading-relaxed text-[#7a7a7a]">
-            We engineer products across every layer — from community tooling to
-            production-grade software.
-          </p>
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6 }} className="mb-10 max-w-2xl sm:mb-14">
+          <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.18em] text-[#767676]">O que fazemos</p>
+          <h2 className="text-balance text-[clamp(2.35rem,6vw,4rem)] font-semibold leading-[0.98] tracking-[-0.04em] text-white">Construímos o que o teu negócio precisa.</h2>
+          <p className="mt-4 max-w-xl text-pretty text-sm leading-6 text-[#808080] sm:text-base sm:leading-7">Sem complicar. Escolhemos a solução certa para o objetivo e fazemos tudo para ela ser fácil de usar.</p>
         </motion.div>
 
-        {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[rgba(255,255,255,0.06)] rounded-2xl overflow-hidden border border-[rgba(255,255,255,0.06)]">
-          {services.map((service, i) => (
-            <motion.div
-              key={service.title}
-              custom={i}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-60px" }}
-              whileHover={{ backgroundColor: "rgba(255,255,255,0.04)" }}
-              className="group relative flex flex-col gap-5 p-7 bg-[#050505] transition-colors duration-300"
-            >
-              {/* Icon */}
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.04)] group-hover:border-[rgba(255,255,255,0.14)] group-hover:bg-[rgba(255,255,255,0.07)] transition-all duration-300">
-                <service.icon
-                  size={18}
-                  className="text-[#b8b8b8] group-hover:text-white transition-colors duration-300"
-                  aria-hidden="true"
-                />
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <h3 className="text-sm font-semibold text-white">
-                  {service.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-[#7a7a7a] group-hover:text-[#b8b8b8] transition-colors duration-300">
-                  {service.description}
-                </p>
-              </div>
-
-              {/* Hover corner accent */}
-              <div
-                aria-hidden="true"
-                className="absolute top-0 right-0 w-16 h-16 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.04)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              />
-            </motion.div>
-          ))}
+        <div className="overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.035]">
+          <div className="grid grid-cols-1 gap-px bg-white/[0.06] sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((service, i) => (
+              <motion.a
+                key={service.title}
+                href="#contact"
+                custom={i}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-40px" }}
+                whileHover={{ backgroundColor: "rgba(255,255,255,0.045)" }}
+                className="group relative flex min-h-[245px] flex-col gap-5 bg-[#050505] p-6 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white/50 sm:p-7"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.035] transition group-hover:border-white/[0.16] group-hover:bg-white/[0.07]">
+                    <service.icon size={18} className="text-[#b8b8b8] transition-colors group-hover:text-white" aria-hidden="true" />
+                  </div>
+                  <ArrowUpRight size={16} className="text-[#555] transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" aria-hidden="true" />
+                </div>
+                <div className="mt-auto flex flex-col gap-2">
+                  <h3 className="text-base font-semibold text-white">{service.title}</h3>
+                  <p className="text-sm leading-6 text-[#777] transition-colors group-hover:text-[#a0a0a0]">{service.description}</p>
+                </div>
+              </motion.a>
+            ))}
+          </div>
         </div>
+
+        <p className="mt-5 text-center text-[11px] text-[#555]">Não sabes exatamente do que precisas? <a href="#contact" className="text-[#b8b8b8] underline decoration-white/20 underline-offset-4 transition hover:text-white">Explica-nos a ideia.</a></p>
       </div>
     </section>
   );
