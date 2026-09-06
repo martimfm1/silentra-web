@@ -28,6 +28,15 @@ export function Navigation() {
   useMotionValueEvent(scrollY, "change", (latest) => setScrolled(latest > 16));
 
   useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMobileMenuOpen(false);
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
+  useEffect(() => {
     if (!mobileMenuOpen) {
       document.body.style.overflow = "";
       return;
@@ -36,21 +45,20 @@ export function Navigation() {
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMobileMenuOpen(false);
-    };
-
-    window.addEventListener("keydown", onKeyDown);
     return () => {
       document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", onKeyDown);
     };
   }, [mobileMenuOpen]);
 
   const handleNavClick = (href: string) => {
-    setMobileMenuOpen(false);
+    document.body.style.overflow = "";
     requestAnimationFrame(() => {
       document.querySelector(href)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (mobileMenuOpen) {
+        window.setTimeout(() => {
+          document.body.style.overflow = "hidden";
+        }, 450);
+      }
     });
   };
 
