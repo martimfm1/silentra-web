@@ -1,23 +1,25 @@
 "use client";
 
 import Image from "next/image";
+import { Instagram, ArrowUpRight } from "lucide-react";
 
 const footerLinks = {
-  Company: [
+  Empresa: [
     { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
+    { label: "Serviços", href: "#services" },
+    { label: "Projetos", href: "#work" },
+    { label: "Contacto", href: "#contact" },
   ],
-  Services: [
-    { label: "Discord Bots", href: "#services" },
+  Serviços: [
     { label: "Websites", href: "#services" },
-    { label: "Landing Pages", href: "#services" },
-    { label: "Full-Stack Apps", href: "#services" },
+    { label: "Landing pages", href: "#services" },
+    { label: "Web apps", href: "#services" },
+    { label: "Software à medida", href: "#services" },
   ],
-  Projects: [
-    { label: "Featured Work", href: "#work" },
-    { label: "Silentra Barbers", href: "#work" },
-    { label: "Silentra Ticket Bot", href: "#work" },
+  Projetos: [
+    { label: "GB Barbershop", href: "#work" },
+    { label: "Lab Customs", href: "#work" },
+    { label: "Tattoo Studio", href: "#work" },
   ],
   Legal: [
     { label: "Privacy Policy", href: "/privacy-policy" },
@@ -25,31 +27,12 @@ const footerLinks = {
   ],
 };
 
-const socials = [
-  {
-    label: "Discord",
-    href: "https://discord.gg/aKpwVrXgyx",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" aria-hidden="true">
-        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.034.056a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z" />
-      </svg>
-    ),
-  },
-  {
-    label: "GitHub",
-    href: "https://github.com/martimfm1",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" aria-hidden="true">
-        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-      </svg>
-    ),
-  },
-];
+const instagramUrl = "https://www.instagram.com/silentra.dev/";
 
 function handleFooterNavClick(href: string) {
   if (href.startsWith("#")) {
     const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 }
 
@@ -57,78 +40,32 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer
-      className="relative border-t border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)] backdrop-blur-sm"
-      aria-label="Site footer"
-    >
-      {/* Top reflection line */}
-      <div
-        aria-hidden="true"
-        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.08)] to-transparent"
-      />
-
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-8 lg:gap-12">
-          {/* Brand column */}
-          <div className="col-span-2 flex flex-col gap-5">
-            <a
-              href="#home"
-              onClick={(e) => { e.preventDefault(); handleFooterNavClick("#home"); }}
-              className="inline-flex items-center gap-2.5"
-              aria-label="Silentra home"
-            >
+    <footer className="relative border-t border-white/[0.06] bg-white/[0.015]" aria-label="Site footer">
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_repeat(4,minmax(0,1fr))] lg:gap-8">
+          <div className="flex flex-col gap-5">
+            <a href="#home" onClick={(e) => { e.preventDefault(); handleFooterNavClick("#home"); }} className="inline-flex w-fit items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50">
               <div className="relative h-7 w-7 overflow-hidden rounded-md">
-                <Image
-                  src="/silentra-logo.png"
-                  alt="Silentra"
-                  fill
-                  className="object-cover"
-                  sizes="28px"
-                />
+                <Image src="/silentra-logo.png" alt="Silentra" fill className="object-cover" sizes="28px" />
               </div>
-              <span className="text-sm font-semibold tracking-wide text-white">
-                Silentra
-              </span>
+              <span className="text-sm font-semibold tracking-wide text-white">Silentra</span>
             </a>
-            <p className="text-sm leading-relaxed text-[#7a7a7a] max-w-xs">
-              You think. We do. Premium digital products built with engineering precision.
-            </p>
-
-            {/* Socials */}
-            <div className="flex items-center gap-2">
-              {socials.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={social.label}
-                  className="flex h-8 w-8 items-center justify-center rounded-lg border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.03)] text-[#7a7a7a] hover:text-white hover:border-[rgba(255,255,255,0.15)] hover:bg-[rgba(255,255,255,0.07)] transition-all duration-300"
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
+            <p className="max-w-sm text-sm leading-6 text-[#777]">Websites e software feitos à medida para negócios que querem vender, crescer e trabalhar melhor.</p>
+            <a href={instagramUrl} target="_blank" rel="noreferrer" className="group inline-flex w-fit items-center gap-2 text-sm text-[#999] transition hover:text-white">
+              <Instagram size={15} aria-hidden="true" />
+              @silentra.dev
+              <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+            </a>
           </div>
 
-          {/* Link columns */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category} className="flex flex-col gap-4">
-              <h3 className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#7a7a7a]">
-                {category}
-              </h3>
+              <h3 className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#666]">{category}</h3>
               <ul className="flex flex-col gap-3" role="list">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
-                      onClick={
-                        link.href.startsWith("#")
-                          ? (e) => { e.preventDefault(); handleFooterNavClick(link.href); }
-                          : undefined
-                      }
-                      className="text-sm text-[#7a7a7a] hover:text-white transition-colors duration-300"
-                    >
+                    <a href={link.href} onClick={link.href.startsWith("#") ? (e) => { e.preventDefault(); handleFooterNavClick(link.href); } : undefined} className="text-sm text-[#777] transition-colors hover:text-white">
                       {link.label}
                     </a>
                   </li>
@@ -138,14 +75,9 @@ export function Footer() {
           ))}
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-16 pt-8 border-t border-[rgba(255,255,255,0.06)] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-[11px] text-[#7a7a7a]">
-            &copy; {year} Silentra. All rights reserved.
-          </p>
-          <p className="text-[11px] text-[#7a7a7a]">
-            you think. we do.
-          </p>
+        <div className="mt-12 flex flex-col gap-3 border-t border-white/[0.06] pt-6 text-[10px] text-[#555] sm:mt-16 sm:flex-row sm:items-center sm:justify-between">
+          <p>&copy; {year} Silentra. Todos os direitos reservados.</p>
+          <p>you think. we do.</p>
         </div>
       </div>
     </footer>
