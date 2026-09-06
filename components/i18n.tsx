@@ -170,10 +170,10 @@ export const copy = {
         "Produto completo de gestão financeira pessoal, com dashboard, despesas recorrentes, objetivos e organização do dinheiro do dia a dia.",
       ],
       tags: [
-        ["Next.js", "UX/UI", "Conversão"],
-        ["Next.js", "Motion", "SEO"],
-        ["Next.js", "UX/UI", "Mobile"],
-        ["Next.js", "TypeScript", "Supabase"],
+        ["Next.js", "UX/UI", "Conversão", "SEO"],
+        ["Next.js", "Motion", "SEO", "UX/UI", "Landing Page"],
+        ["Next.js", "UX/UI", "Mobile", "Discord Bot", "Ticket System"],
+        ["Next.js", "TypeScript", "Supabase", "Web App", "Gestão Financeira"],
       ],
     },
     why: {
@@ -357,10 +357,10 @@ export const copy = {
         "A complete personal finance product with dashboards, recurring expenses, goals and a cleaner way to manage everyday money.",
       ],
       tags: [
-        ["Next.js", "UX/UI", "Conversion"],
-        ["Next.js", "Motion", "SEO"],
-        ["Next.js", "UX/UI", "Mobile"],
-        ["Next.js", "TypeScript", "Supabase"],
+        ["Next.js", "UX/UI", "Conversion", "SEO"],
+        ["Next.js", "Motion", "SEO", "UX/UI", "Landing Page"],
+        ["Next.js", "UX/UI", "Mobile", "Discord Bot", "Ticket System"],
+        ["Next.js", "TypeScript", "Supabase", "Web App", "Personal Finance"],
       ],
     },
     why: {

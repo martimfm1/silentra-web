@@ -18,14 +18,14 @@ const projects = [
     url: "https://lab-customs-clipper.vercel.app/",
   },
   {
-    name: "Cabra Cega Tattoo Studio",
-    image: undefined,
-    url: "https://github.com/martimfm1/cabra-cega-tattoo-studio",
+    name: "Ticket Discord Bot ",
+    image: "/work-silentra-discord-bot.png",
+    url: "https://ticketbot.silentra.me/",
   },
   {
     name: "MoneyFlow",
-    image: undefined,
-    url: "https://github.com/martimfm1/MoneyFlow",
+    image: "/work-silentra-moneyflow.png",
+    url: "https://moneyflow-ten-dusky.vercel.app/",
   },
 ];
 const cardVariants = {
