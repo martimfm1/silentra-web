@@ -55,7 +55,7 @@ export function Footer() {
       items: [
         ["Silentra for Barbers", "#work"],
         ["Lab Customs", "#work"],
-        [locale === "pt" ? "Tattoo Studio" : "Tattoo Studio", "#work"],
+        [locale === "pt" ? "MoneyFlow" : "MoneyFlow", "#work"],
       ],
     },
     {
