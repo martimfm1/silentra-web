@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: "Silentra — Websites e software à medida",
   description:
     "A Silentra cria websites, landing pages, web apps e software à medida para negócios que querem vender mais, simplificar processos e crescer.",
-  metadataBase: new URL("https://silentra.me"),
+  metadataBase: new URL("https://www.silentra.me"),
   alternates: {
     canonical: "/",
   },
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     title: "Silentra — Websites e software à medida",
     description:
       "Websites, landing pages e software feitos à medida para negócios reais.",
-    url: "https://silentra.me",
+    url: "https://www.silentra.me",
     siteName: "Silentra",
     images: [
       {
