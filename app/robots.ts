@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/api/",
     },
-    sitemap: "https://silentra.me/sitemap.xml",
+    sitemap: "https://www.silentra.me/sitemap.xml",
   };
 }
